@@ -3,6 +3,12 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Jurusan;
+use App\Models\Mapel;
+use App\Models\Nilai;
+use App\Models\Soal;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,11 +20,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        User::factory(13)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $this->call(MapelSeeder::class);
+        $this->call(JurusanSeeder::class);
+        $this->call(SoalSeeder::class);
+        $this->call(NilaiSeeder::class);
+        $this->call(UserSeeder::class);
     }
 }
