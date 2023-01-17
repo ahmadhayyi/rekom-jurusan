@@ -35,9 +35,7 @@
                     @foreach ($mapel_sidebar as $item)
                     <th class="px-4 py-3">{{ $item->nama }}</th>
                     @endforeach
-                    @if ($kmeans->count())
                     <th class="px-4 py-3">Jurusan</th>
-                    @endif
                     <th class="px-4 py-3">Aksi</th>
                 </tr>
             </thead>
@@ -51,14 +49,24 @@
                     </td>
                     @php $urutan = []; @endphp
                     @foreach ($item->nilai as $n ) @php $urutan[] = $n->mapel_id; @endphp @endforeach
+                    @php
+                        $sisa = count($mapel_sidebar) - count($urutan) ;
+                    @endphp
                     @foreach ($urutan as $i)
                         @php $color = $item->nilai[$i-1]->nilai >= 80 ? 'bg-green-700 text-green-100' : ($item->nilai[$i-1]->nilai >= 60 && $item->nilai[$i-1]->nilai <= 79 ? 'bg-yellow-700 text-yellow-100' : 'bg-red-700 text-red-100' ); @endphp
                         <td class="px-4 py-3 text-xs">
                             <span class="px-2 py-1 font-semibold leading-tight rounded-full {{ $item->nilai[$i-1]->nilai !== null ? $color : ''}}"> {{ $item->nilai[$i-1]->nilai }}</span>
                         </td>
                     @endforeach
+                    @for ($i = 0; $i < $sisa; $i++)
+                        <td class="px-4 py-3 text-xs">
+                            <span class="px-2 py-1 font-semibold leading-tight rounded-full"></span>
+                        </td>
+                    @endfor
                     @if (isset($item->kmeans[0]))
                     <td class="px-4 py-3">{{ $item->kmeans[0]->jurusan->nama }}</td>
+                    @else
+                    <td class="px-4 py-3"></td>
                     @endif
                     <td class="px-4 py-3">
                         <div class="flex items-center space-x-4 text-sm">

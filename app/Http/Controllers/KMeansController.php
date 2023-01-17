@@ -109,7 +109,12 @@ class KMeansController extends Controller
                         $jml_selain_0 += ($iterasi_cluster[$c][$siswa][$mapel] != 0) ? 1 : 0;
                     }
                     // masukkan rata-rata
-                    $iterasi_rata_rata[$c][$mapel] = $total[$c][$mapel] / $jml_selain_0;
+                    if ($jml_selain_0 === 0) {
+                        $iterasi_rata_rata[$c][$mapel] = 0;
+                    } else {
+                        $iterasi_rata_rata[$c][$mapel] = $total[$c][$mapel] / $jml_selain_0;
+                    }
+                    
                 }
             }
 
@@ -171,6 +176,8 @@ class KMeansController extends Controller
         $pst_cluster = 1;
         // jarak antara cluster
         $jrk_antr_cluster = 2;
+        // Maksimum Iterasi
+        $max_iterasi = 100;
 
         // Iterasi 1
 
@@ -224,6 +231,7 @@ class KMeansController extends Controller
             $iterasi_jumlah[$iter] = $hasil[3];
             $iterasi_rata_rata[$iter] = $hasil[4];
             $iter++;
+            $iter >= $max_iterasi ? $hasil[5] = 0 : '';
         } while ($hasil[5] != 0);
 
         // Rangkuman Baca Iterasi
@@ -244,6 +252,8 @@ class KMeansController extends Controller
 
         // return $iterasi_rata_rata;
         // iterasi->cluter->mapel
+
+
         for ($siswa=0; $siswa < count($user); $siswa++) {
             KMeans::create([
                 'user_id' => $user[$siswa],
