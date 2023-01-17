@@ -19,7 +19,7 @@ class UserFactory extends Factory
     {
         return [
             'nisn' => fake()->numberBetween(1000000000, 9999999999),
-            'nama' => fake()->name(),
+            // 'nama' => fake()->name(),
             'level' => 2,
         ];
     }
