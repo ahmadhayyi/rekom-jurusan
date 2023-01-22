@@ -33,7 +33,7 @@ class LoginSiswaController extends Controller
             }
             Auth::loginUsingId($tambah->id);
             $request->session()->regenerate();
-            return redirect()->intended('/jawab');
+            return redirect()->intended('/informasi');
         }
     }
 }

@@ -17,7 +17,7 @@ class DashboardController extends Controller
             'mapel' => Mapel::count(),
             'soal' => Soal::count(),
             'jurusan' => Jurusan::count(),
-            'nilai' => Nilai::whereNotNull('nilai')->latest()->take(7)->get(),
+            'nilai' => Nilai::whereNotNull('nilai')->latest()->take(8)->get(),
             'total' => Nilai::whereNotNull('nilai')->count(),
             'mapel_sidebar' => Mapel::all(),
         ]);

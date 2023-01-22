@@ -11,7 +11,7 @@
             <span class="text-gray-700 dark:text-gray-400">Nama Jurusan</span>
             <input
                 class="block w-full mt-5 p-2 rounded-lg text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                placeholder="" value="{{ old('nama') }}" name="nama" autofocus />
+                placeholder="" value="{{ old('nama') }}" name="nama" required autofocus />
         </label>
 
         <div class="mt-5 text-right">

@@ -84,7 +84,7 @@
                 <tr
                     class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                     <th class="px-4 py-3">No</th>
-                    <th class="px-4 py-3">Siswa</th>
+                    <th class="px-4 py-3">NISN</th>
                     <th class="px-4 py-3">Mapel</th>
                     <th class="px-4 py-3">Nilai</th>
                     <th class="px-4 py-3">Tanggal</th>
@@ -97,12 +97,6 @@
                     <td class="px-4 w-[10px] py-3">{{ $total-- }}</td>
                     <td class="px-4 py-3">
                         <div class="flex items-center text-sm">
-                            <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                                <img class="object-cover w-full h-full rounded-full" src="https://robohash.org/{{ $item->id }}" alt=""
-                                    loading="lazy" />
-                                <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
-                                </div>
-                            </div>
                             <div>
                                 <p class="font-semibold">{{ $item->user->nama }}</p>
                                 <p class="text-xs text-gray-600 dark:text-gray-400">
@@ -111,12 +105,12 @@
                             </div>
                         </div>
                     </td>
-                    <td class="px-4 py-3 text-xs">
+                    <td class="px-4 py-3 text-sm">
                         <span>
                             {{ $item->mapel->nama }}
                         </span>
                     </td>
-                    <td class="px-4 py-3 text-xs">
+                    <td class="px-4 py-3 text-sm">
                         @php $color =  $item->nilai >= 80 ?'bg-green-700 text-green-100' : ($item->nilai >= 60 && $item->nilai <= 79 ? 'bg-yellow-700 text-yellow-100' : 'bg-red-700 text-red-100'); @endphp
                         <span class="px-2 py-1 font-semibold leading-tight rounded-full {{ $color }}">
                             {{ $item->nilai }}

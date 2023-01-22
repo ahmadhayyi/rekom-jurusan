@@ -11,6 +11,7 @@ use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HasilController;
+use App\Http\Controllers\InformasiController;
 use App\Http\Controllers\JawabController;
 use App\Models\Mapel;
 use App\Models\Siswa;
@@ -43,14 +44,15 @@ Route::resource('/siswa', SiswaController::class)->middleware('admin');
 Route::resource('/admin', AdminController::class)->middleware('admin');
 Route::resource('/kmeans', KMeansController::class)->middleware('admin');
 Route::resource('/jawab', JawabController::class)->middleware('siswa');
+Route::get('/informasi', InformasiController::class)->middleware('siswa');
 Route::get('/hasil', HasilController::class);
 
 Route::controller(LoginAdminController::class)->group(function(){
-    Route::get('/login/admin', 'admin');
+    Route::get('/login/admin', 'admin')->middleware('guest');
     Route::post('/login/admin', 'auth_admin');
 });
 Route::controller(LoginSiswaController::class)->group(function(){
-    Route::get('/login', 'siswa')->name('login');
+    Route::get('/login', 'siswa')->name('login')->middleware('guest');
     Route::post('/login', 'auth_siswa');
 });
 Route::post('/logout', LogoutController::class)->name('logout');

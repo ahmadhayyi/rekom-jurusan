@@ -43,9 +43,7 @@ class JurusanController extends Controller
      */
     public function store(StoreJurusanRequest $request)
     {
-        $tambah = Jurusan::create($request->all());
-
-        // $tambah
+        Jurusan::create($request->all());
         return redirect('/jurusan')->with('success', 'Jurusan berhasil ditambah!');
     }
 

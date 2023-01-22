@@ -231,12 +231,10 @@ class KMeansController extends Controller
             $iterasi_jumlah[$iter] = $hasil[3];
             $iterasi_rata_rata[$iter] = $hasil[4];
             $iter++;
-            $iter >= $max_iterasi ? $hasil[5] = 0 : '';
-        } while ($hasil[5] != 0);
+        } while ($hasil[5] != 0 && $iter >= $max_iterasi);
 
-        // Rangkuman Baca Iterasi
 
-        // CARA MEMBACA :
+        // TODO CARA MEMBACA :
 
         // return $iterasi;
         // iterasi->cluster->siswa

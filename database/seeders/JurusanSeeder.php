@@ -15,23 +15,12 @@ class JurusanSeeder extends Seeder
      */
     public function run()
     {
-        Jurusan::create([
-            'nama' => 'Akuntansi',
-        ]);
-        Jurusan::create([
-            'nama' => 'Pemasaran',
-        ]);
-        Jurusan::create([
-            'nama' => 'Multimedia',
-        ]);
-        Jurusan::create([
-            'nama' => 'Perhotelan',
-        ]);
-        Jurusan::create([
-            'nama' => 'Perbankan',
-        ]);
-        Jurusan::create([
-            'nama' => 'Perkantoran',
-        ]);
+        $jurusan =[ 'Akuntansi', 'Pemasaran', 'Multimedia', 'Perhotelan', 'Perbankan', 'Perkantoran'];
+        
+        for ($i=0; $i < count($jurusan); $i++) { 
+            Jurusan::create([
+                'nama' => $jurusan[$i],
+            ]);
+        }
     }
 }

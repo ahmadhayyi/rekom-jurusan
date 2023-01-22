@@ -42,7 +42,7 @@
                                     <span class="px-2 py-1 font-semibold leading-tight rounded-full bg-green-700 text-green-100">{{ $n->nilai }}</span>
                                 @elseif ($n->nilai >= 60 && $n->nilai <= 79)
                                     <span class="px-2 py-1 font-semibold leading-tight rounded-full bg-warning-700 text-warning-100">{{ $n->nilai }}</span>
-                                @elseif ($n->nilai == null)
+                                @elseif ($n->nilai === null)
                                     {{-- <span class="px-2 py-1 font-semibold leading-tight rounded-full bg-red-700 text-red-100">{{ $n->nilai }}</span> --}}
                                 @else
                                     <span class="px-2 py-1 font-semibold leading-tight rounded-full bg-red-700 text-red-100">{{ $n->nilai }}</span>

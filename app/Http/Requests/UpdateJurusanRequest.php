@@ -24,7 +24,7 @@ class UpdateJurusanRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama' => 'required|unique:jurusans,nama,'. $this->jurusan->nama .',nama'
+            'nama' => 'required|unique:jurusans,nama,'. $this->jurusan->nama .',nama',
         ];
     }
 }

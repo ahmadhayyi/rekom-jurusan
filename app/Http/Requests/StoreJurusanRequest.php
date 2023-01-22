@@ -24,7 +24,7 @@ class StoreJurusanRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama' => 'required'
+            'nama' => 'required',
         ];
     }
 }
