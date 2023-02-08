@@ -13,6 +13,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HasilController;
 use App\Http\Controllers\InformasiController;
 use App\Http\Controllers\JawabController;
+use App\Http\Controllers\MinatController;
 use App\Models\Mapel;
 use App\Models\Siswa;
 use App\Models\Soal;
@@ -32,20 +33,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', DashboardController::class)->middleware('admin');
-Route::resource('/mapel', MapelController::class)->middleware('admin');
-Route::resource('/soal', SoalController::class)->middleware('admin');
-Route::get('/soal/mapel/{id}',function($id){
-    $id == 00 ? $soal = Soal::all() : $soal = Soal::where('mapel_id', $id)->get();
-    return response()->json($soal);
+Route::middleware(['admin'])->group(function() {
+    Route::get('/', DashboardController::class);
+    Route::resource('/mapel', MapelController::class);
+    Route::resource('/minat', MinatController::class);
+    Route::get('/soal/mapel/{id}', [SoalController::class, 'custom']);
+    Route::resource('/soal', SoalController::class);
+    Route::resource('/jurusan', JurusanController::class);
+    Route::resource('/siswa', SiswaController::class);
+    Route::resource('/admin', AdminController::class);
+    Route::resource('/kmeans', KMeansController::class);
 });
-Route::resource('/jurusan', JurusanController::class)->middleware('admin');
-Route::resource('/siswa', SiswaController::class)->middleware('admin');
-Route::resource('/admin', AdminController::class)->middleware('admin');
-Route::resource('/kmeans', KMeansController::class)->middleware('admin');
-Route::resource('/jawab', JawabController::class)->middleware('siswa');
-Route::get('/informasi', InformasiController::class)->middleware('siswa');
-Route::get('/hasil', HasilController::class);
+
+Route::middleware(['siswa'])->group(function() {
+    Route::get('/jawab/minat', [JawabController::class, 'createMinat']);
+    Route::post('/jawab/minat', [JawabController::class, 'storeMinat']);
+    Route::resource('/jawab', JawabController::class);
+    Route::get('/informasi', InformasiController::class);
+    Route::get('/hasil', HasilController::class);
+});
 
 Route::controller(LoginAdminController::class)->group(function(){
     Route::get('/login/admin', 'admin')->middleware('guest');

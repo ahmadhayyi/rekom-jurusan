@@ -20,7 +20,6 @@ class MapelController extends Controller
     public function index()
     {
         return view('dashboard.mapel.index',[
-            'mapel_sidebar' => Mapel::all(),
             'data' => Mapel::Paginate(10),
         ]);
     }
@@ -33,9 +32,7 @@ class MapelController extends Controller
     public function create()
     {
 
-        return view('dashboard.mapel.create',[
-            'mapel_sidebar' => Mapel::all(),
-        ]);
+        return view('dashboard.mapel.create');
     }
 
     /**

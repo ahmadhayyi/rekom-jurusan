@@ -1,8 +1,8 @@
 @extends('dashboard.layout.main')
 
 @section('container')
-<h2 class="my-6 text-2xl font-semibold bg- text-gray-700 dark:text-gray-200">
-    Jurusan
+<h2 class="my-6 text-2xl font-semibold bg- text-gray-700 dark:text-gray-200 capitalize">
+    daftar {{ last(explode('/', Request::url())) }}
 </h2>
 <div class="flex justify-between mb-7">
     @include('dashboard.components.create')
@@ -22,7 +22,7 @@
             <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                 @foreach ($data as $item)
                 <tr class="text-gray-700 dark:text-gray-400">
-                    <td class="px-4 py-3 w-[10px]">{{ $loop->iteration }}</td>
+                    <td class="px-4 py-3 w-[10px]">{{ (($data->currentPage() - 1) * $data->perPage()) + $loop->iteration }}</td>
                     <td class="px-4 py-3">{{ $item->nama }}</td>
                     {{-- <td class="px-4 py-3">{{ $item->kmeans->count() }}</td> --}}
                     <td class="px-4 py-3">

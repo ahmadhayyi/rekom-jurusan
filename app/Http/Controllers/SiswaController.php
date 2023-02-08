@@ -24,8 +24,9 @@ class SiswaController extends Controller
         return view('dashboard.siswa.index',[
             'currentPage' => request()->input('page', 1),
             'data' => User::where('level', 2)->Paginate(8),
-            'mapel_sidebar' => Mapel::all(),
+            'mapel' => Mapel::all(),
             'kmeans' => KMeans::all(),
+            // 'minat' => KMeans::where('mapel_id', 0)->get()
         ]);
     }
 
@@ -47,7 +48,7 @@ class SiswaController extends Controller
      */
     public function store(StoreSiswaRequest $request)
     {
-        //
+        
     }
 
     /**
@@ -70,7 +71,7 @@ class SiswaController extends Controller
     public function edit(User $siswa)
     {
         return view('dashboard.siswa.edit',[
-            'mapel_sidebar' => Mapel::all(),
+            'mapel' => Mapel::all(),
         ]);
     }
 
@@ -94,7 +95,7 @@ class SiswaController extends Controller
      */
     public function destroy(User $siswa)
     {
-        User::destroy($siswa->id);
+        User::find($siswa->id)->delete();
         Nilai::where('user_id', $siswa->id)->delete();
         KMeans::where('user_id', $siswa->id)->delete();
         return redirect('/siswa')->with('success', 'Siswa berhasil dihapus!');

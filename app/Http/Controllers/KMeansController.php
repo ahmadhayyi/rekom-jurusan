@@ -6,6 +6,8 @@ use App\Models\Jurusan;
 use App\Models\KMeans;
 use App\Models\Mapel;
 use App\Models\Nilai;
+use App\Models\Soal;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class KMeansController extends Controller
@@ -17,7 +19,9 @@ class KMeansController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.kmeans.index',[
+            'mapel' => Mapel::all(),
+        ]);
     }
 
     /**
@@ -39,7 +43,7 @@ class KMeansController extends Controller
     public function store(Request $request)
     {
         if(Nilai::whereNull('nilai')->count() > 0){
-            return redirect('/siswa')->with('failed', 'Nilai siswa belum lengkap');
+            return redirect('/kmeans')->with('failed', 'Nilai siswa belum lengkap');
         }
 
         // Reset semua data
@@ -47,8 +51,8 @@ class KMeansController extends Controller
 
         // Jumlah Cluster
         $jml_cluster = Jurusan::count();
-        // Jumlah Atribut Data
-        $jml_mapel = Mapel::count();
+        // Jumlah Atribut Data + Minat
+        $jml_mapel = Mapel::count() + 1;
         // Ambil data nilai
         $nilai = Nilai::orderBy('user_id')->orderBy('mapel_id')->get();
         // mengatur array data siswa
@@ -177,7 +181,7 @@ class KMeansController extends Controller
         // jarak antara cluster
         $jrk_antr_cluster = 2;
         // Maksimum Iterasi
-        $max_iterasi = 100;
+        $max_iterasi = 5;
 
         // Iterasi 1
 
@@ -236,6 +240,9 @@ class KMeansController extends Controller
 
         // TODO CARA MEMBACA :
 
+        // return $data;
+        // siswa->mapel
+        
         // return $iterasi;
         // iterasi->cluster->siswa
 
@@ -258,7 +265,22 @@ class KMeansController extends Controller
                 'jurusan_id' => $iterasi_min[1][$siswa],
             ]);
         }
-        return redirect('/siswa')->with('success', 'KMeans berhasil diproses!');
+
+        return view('dashboard.kmeans.index',[
+            'data' => $data,
+            'user' => $user,
+            'siswa' => User::all(),
+            'iterasi' => $iterasi,
+            'iterasi_min' => $iterasi_min,
+            'iterasi_cluster' => $iterasi_cluster,
+            'iterasi_jumlah' => $iterasi_jumlah,
+            'jrk_antr_cluster' => $jrk_antr_cluster,
+            'pst_cluster' => $pst_cluster,
+            'mapel' => Mapel::all(),
+            'jurusan' => Jurusan::all(),
+            'kmeans' => KMeans::all(),
+            'jml_soal' => Soal::count(),
+        ]);
     }
 
     /**

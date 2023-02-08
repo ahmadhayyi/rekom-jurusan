@@ -28,9 +28,13 @@ class LoginSiswaController extends Controller
                 Nilai::create([
                     'user_id' => $tambah->id,
                     'mapel_id' => $item->id,
-                    'nilai' => null,
                 ]);
             }
+            Nilai::create([
+                'user_id' => $tambah->id,
+                'mapel_id' => 0,
+                'nilai' => 0,
+            ]);
             Auth::loginUsingId($tambah->id);
             $request->session()->regenerate();
             return redirect()->intended('/informasi');

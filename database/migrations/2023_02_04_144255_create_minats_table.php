@@ -13,13 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('nilais', function (Blueprint $table) {
+        Schema::create('minats', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('mapel_id');
-            // $table->decimal('nilai', 8, 2)->nullable();
-            $table->integer('nilai')->nullable()->default(null);
-            $table->text('ket')->nullable()->default(null);
+            $table->string('nama')->unique();
             $table->timestamps();
         });
     }
@@ -31,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nilais');
+        Schema::dropIfExists('minats');
     }
 };

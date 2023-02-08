@@ -21,7 +21,7 @@ class SoalController extends Controller
     {
         return view('dashboard.soal.index',[
             'soal' =>  Soal::all(),
-            'mapel_sidebar' => Mapel::all(),
+            'mapel' => Mapel::all(),
             'siswa' => User::all(),
         ]);
     }
@@ -34,7 +34,7 @@ class SoalController extends Controller
     public function create()
     {
         return view('dashboard.soal.create',[
-            'mapel_sidebar' => Mapel::all(),
+            'mapel' => Mapel::all(),
         ]);
     }
 
@@ -71,7 +71,6 @@ class SoalController extends Controller
     {
         return view('dashboard.soal.edit',[
             'soal' => $soal,
-            'mapel_sidebar' => Mapel::all(),
         ]);
     }
 
@@ -98,5 +97,11 @@ class SoalController extends Controller
     {
         Soal::destroy($soal->id);
         return redirect('/soal')->with('success', 'Data Berhasil dihapus');
+    }
+
+    public function custom($id)
+    {
+        $id == 00 ? $soal = Soal::all() : $soal = Soal::where('mapel_id', $id)->get();
+        return response()->json($soal);
     }
 }

@@ -22,7 +22,7 @@
                     <span class="ml-4">Dashboard</span>
                 </a>
             </li>
-            <li class="relative px-6 py-3 {{ Request::is('mapel') ? 'bg-slate-700' : '' }}">
+            <li class="relative px-6 py-3 {{ Request::is('mapel*') ? 'bg-slate-700' : '' }}">
                 @if (Request::is('mapel*'))
                 <span class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg bg-purple-600"
                     aria-hidden="true"></span>
@@ -38,7 +38,23 @@
                     <span class="ml-4">Mapel</span>
                 </a>
             </li>
-            <li class="relative px-6 py-3 {{ Request::is('soal') ? 'bg-slate-700' : '' }}">
+            <li class="relative px-6 py-3 {{ Request::is('minat*') ? 'bg-slate-700' : '' }}">
+                @if (Request::is('minat*'))
+                <span class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg bg-purple-600"
+                    aria-hidden="true"></span>
+                @endif
+                <a class="inline-flex w-full items-center text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:text-gray-100 dark:hover:text-gray-200"
+                    href="/minat">
+                    <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                        <path
+                            d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z">
+                        </path>
+                    </svg>
+                    <span class="ml-4">Minat</span>
+                </a>
+            </li>
+            <li class="relative px-6 py-3 {{ Request::is('soal*') ? 'bg-slate-700' : '' }}">
                 @if (Request::is('soal*'))
                 <span class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg bg-purple-600" aria-hidden="true"></span>
                 @endif
@@ -53,7 +69,7 @@
                     <span class="ml-4">Soal</span>
                 </a>
             </li>
-            <li class="relative px-6 py-3 {{ Request::is('jurusan') ? 'bg-slate-700' : '' }}">
+            <li class="relative px-6 py-3 {{ Request::is('jurusan*') ? 'bg-slate-700' : '' }}">
                 @if (Request::is('jurusan*'))
                 <span class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg bg-purple-600"
                     aria-hidden="true"></span>
@@ -69,7 +85,7 @@
                     <span class="ml-4">Jurusan</span>
                 </a>
             </li>
-            <li class="relative px-6 py-3 {{ Request::is('siswa') ? 'bg-slate-700' : '' }}">
+            <li class="relative px-6 py-3 {{ Request::is('siswa*') ? 'bg-slate-700' : '' }}">
                 @if (Request::is('siswa*'))
                 <span class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg bg-purple-600" aria-hidden="true"></span>
                 @endif
@@ -80,6 +96,21 @@
                         <path d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
                     </svg>
                     <span class="ml-4">Siswa</span>
+                </a>
+            </li>
+            <li class="relative px-6 py-3 {{ Request::is('kmeans*') ? 'bg-slate-700' : '' }}">
+                @if (Request::is('kmeans*'))
+                <span class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg bg-purple-600" aria-hidden="true"></span>
+                @endif
+                <a class="inline-flex w-full items-center text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:text-gray-100 dark:hover:text-gray-200"
+                    href="/kmeans">
+                    <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path
+                            d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z">
+                        </path>
+                    </svg>
+                    <span class="ml-4">K Means</span>
                 </a>
             </li>
             {{-- <li class="relative px-6 py-3 {{ Request::is('admin') ? 'bg-slate-700' : '' }}">

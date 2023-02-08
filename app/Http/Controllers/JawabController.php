@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreRequestJawaban;
 use App\Models\Mapel;
+use App\Models\Minat;
 use App\Models\Nilai;
 use App\Models\Soal;
 use App\Models\User;
@@ -19,8 +20,9 @@ class JawabController extends Controller
     public function index()
     {
         return view('dashboard.jawab.index',[
-            'mapel_sidebar' => Mapel::all(),
+            'mapel' => Mapel::all(),
             'nilai' => Nilai::where('user_id', auth()->user()->id)->orderBy('mapel_id')->get(),
+            'minat' => Nilai::where('user_id', auth()->user()->id)->where('mapel_id', 0)->get()[0],
         ]);
     }
 
@@ -32,11 +34,17 @@ class JawabController extends Controller
     public function create(Request $request)
     {
         return view('dashboard.jawab.create',[
-            'mapel_sidebar' => Mapel::all(),
             'soal' => Soal::where('mapel_id', $request->id)->get(),
         ]);
     }
 
+    public function createMinat(Request $request)
+    {
+        return view('dashboard.jawab.create_minat',[
+            'minat' => Minat::all(),
+        ]);
+    }
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -58,11 +66,27 @@ class JawabController extends Controller
         $total_soal = collect($jawaban)->count();
         $nilai_max = 100;
         $nilai = ($nilai_max/$total_soal) * $true;
-        // $user = User::find(auth()->user()->id);
         $data = [
             'nilai' => $nilai,
         ];
         Nilai::where('user_id', auth()->user()->id)->where('mapel_id', $request->mapel_id)->update($data);
+        return redirect('/jawab')->with('success', 'Jawaban berhasil disimpan!');
+    }
+
+    public function storeMinat(Request $request)
+    {
+        $jawaban = $request->input('jawaban');
+        $hasil = "";
+        foreach ($jawaban as $key => $value) {
+            $hasil = ($key == 0) ? $value : $hasil . "," . $value;
+        }
+
+        $data = [
+            'nilai' => 80,
+            'ket' => $hasil,
+        ];
+        
+        Nilai::where('user_id', auth()->user()->id)->where('mapel_id', 0)->update($data);
         return redirect('/jawab')->with('success', 'Jawaban berhasil disimpan!');
     }
 

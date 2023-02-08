@@ -110,7 +110,7 @@
                             {{ $item->mapel->nama }}
                         </span>
                     </td>
-                    <td class="px-4 py-3 text-sm">
+                    <td class="px-4 py-3 text-xs">
                         @php $color =  $item->nilai >= 80 ?'bg-green-700 text-green-100' : ($item->nilai >= 60 && $item->nilai <= 79 ? 'bg-yellow-700 text-yellow-100' : 'bg-red-700 text-red-100'); @endphp
                         <span class="px-2 py-1 font-semibold leading-tight rounded-full {{ $color }}">
                             {{ $item->nilai }}

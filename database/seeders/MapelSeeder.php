@@ -16,10 +16,10 @@ class MapelSeeder extends Seeder
     public function run()
     {
         Mapel::create([
-            'nama' => 'Bhs Indonesia',
+            'nama' => 'Indonesia',
         ]);
         Mapel::create([
-            'nama' => 'Bhs Inggris',
+            'nama' => 'Inggris',
         ]);
         Mapel::create([
             'nama' => 'Matematika',

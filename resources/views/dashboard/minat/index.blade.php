@@ -14,9 +14,7 @@
                 <tr
                     class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                     <th class="px-4 py-3">No</th>
-                    <th class="px-4 py-3">Mapel</th>
-                    <th class="px-4 py-3">Jumlah Soal</th>
-                    <th class="px-4 py-3">Tanggal</th>
+                    <th class="px-4 py-3">Nama Minat</th>
                     <th class="px-4 py-3">Aksi</th>
                 </tr>
             </thead>
@@ -24,9 +22,7 @@
                 @foreach ($data as $item)
                 <tr class="text-gray-700 dark:text-gray-400">
                     <td class="px-4 py-3 w-[10px]">{{ (($data->currentPage() - 1) * $data->perPage()) + $loop->iteration }}</td>
-                    <td class="px-4 py-3">{{ $item->nama }}</td>
-                    <td class="px-4 py-3">{{ $item->soal->count() }}</td>
-                    <td class="px-4 py-3 text-sm">{{ $item->created_at->diffForHumans() }}</td>
+                    <td class="px-4 py-3 capitalize">{{ $item->nama }}</td>
                     <td class="px-4 py-3">
                         <div class="flex items-center space-x-4 text-sm">
                             @include('dashboard.components.edit')

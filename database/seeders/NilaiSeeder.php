@@ -18,6 +18,7 @@ class NilaiSeeder extends Seeder
 
 
         $data = [
+                    [0, 80, 0, 80, 0, 80, 0, 80, 0, 80, 0, 80, 0],
                     [50, 95, 97, 95, 85, 95, 50, 97, 95, 55, 90, 80, 95],
                     [96, 98, 96, 86, 94, 94, 90, 98, 98, 90, 97, 90, 86],
                     [90, 96, 90, 98, 86, 92, 86, 98, 86, 90, 92, 95, 92],
@@ -29,7 +30,7 @@ class NilaiSeeder extends Seeder
             for ($siswa=0; $siswa < count($data[0]); $siswa++) {
                 Nilai::create([
                     'user_id' => $siswa+1,
-                    'mapel_id' => $mapel+1,
+                    'mapel_id' => $mapel,
                     'nilai' => $data[$mapel][$siswa],
                 ]);
             }

@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         // Nilai::factory(300)->create();
 
         $this->call(MapelSeeder::class);
+        $this->call(MinatSeeder::class);
         $this->call(JurusanSeeder::class);
         $this->call(SoalSeeder::class);
         $this->call(NilaiSeeder::class);

@@ -18,7 +18,6 @@ class JurusanController extends Controller
     public function index()
     {
         return view('dashboard.jurusan.index',[
-            'mapel_sidebar' => Mapel::all(),
             'data' => Jurusan::paginate(10),
         ]);
     }
@@ -30,9 +29,7 @@ class JurusanController extends Controller
      */
     public function create()
     {
-        return view('dashboard.jurusan.create',[
-            'mapel_sidebar' => Mapel::all(),
-        ]);
+        return view('dashboard.jurusan.create');
     }
 
     /**
@@ -67,7 +64,6 @@ class JurusanController extends Controller
     public function edit(Jurusan $jurusan)
     {
         return view('dashboard.jurusan.edit',[
-            'mapel_sidebar' => Mapel::all(),
             'jurusan' => $jurusan,
         ]);
     }

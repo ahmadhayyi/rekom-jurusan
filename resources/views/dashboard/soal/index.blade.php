@@ -1,15 +1,15 @@
 @extends('dashboard.layout.main')
 
 @section('container')
-<h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-    Soal
+<h2 class="my-6 text-2xl font-semibold bg- text-gray-700 dark:text-gray-200 capitalize">
+    daftar {{ last(explode('/', Request::url())) }}
 </h2>
 <div class="flex justify-between mb-7">
     @include('dashboard.components.create')
     <select name="mapel_id" id="mapel_id"
         class="form-select p-3 py-2 rounded-lg dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray">
         <option value="00">Semua Soal</option>
-        @foreach ($mapel_sidebar as $item)
+        @foreach ($mapel as $item)
         <option value="{{ $item->id }}">{{ $item->nama }}</option>
         @endforeach
     </select>
